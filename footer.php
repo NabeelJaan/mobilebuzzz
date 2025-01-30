@@ -133,116 +133,116 @@
 
 <script>
 
-	document.addEventListener('DOMContentLoaded', function() {
+	// document.addEventListener('DOMContentLoaded', function() {
 
-		const copyLink = document.getElementById('copyLink');
-		const copyMessage = document.getElementById('copyMessage');
+	// 	const copyLink = document.getElementById('copyLink');
+	// 	const copyMessage = document.getElementById('copyMessage');
 
-		if(copyLink) {
-			copyLink.addEventListener('click', function(event) {
-				event.preventDefault();
-				const linkUrl = copyLink.getAttribute('href');
-				const tempInput = document.createElement('input');
-				tempInput.setAttribute('value', linkUrl);
-				document.body.appendChild(tempInput);
-				tempInput.select();
-				document.execCommand('copy');
-				document.body.removeChild(tempInput);
-				copyMessage.style.display = 'inline'; // Show message below link
-				setTimeout(function() {
-					copyMessage.style.display = 'none'; // Hide message below link after 2 seconds
-				}, 4000);
-			});
-		}
+	// 	if(copyLink) {
+	// 		copyLink.addEventListener('click', function(event) {
+	// 			event.preventDefault();
+	// 			const linkUrl = copyLink.getAttribute('href');
+	// 			const tempInput = document.createElement('input');
+	// 			tempInput.setAttribute('value', linkUrl);
+	// 			document.body.appendChild(tempInput);
+	// 			tempInput.select();
+	// 			document.execCommand('copy');
+	// 			document.body.removeChild(tempInput);
+	// 			copyMessage.style.display = 'inline'; // Show message below link
+	// 			setTimeout(function() {
+	// 				copyMessage.style.display = 'none'; // Hide message below link after 2 seconds
+	// 			}, 4000);
+	// 		});
+	// 	}
 
-		const toc = document.getElementById('rank-math-toc');
-		const sidebar = document.querySelector('.toc_list');
+	// 	const toc = document.getElementById('rank-math-toc');
+	// 	const sidebar = document.querySelector('.toc_list');
 
-		if (toc && sidebar) {
-			sidebar.appendChild(toc);
-		}
+	// 	if (toc && sidebar) {
+	// 		sidebar.appendChild(toc);
+	// 	}
 
-		// Underline the first TOC link by default
-		const firstTocLink = document.querySelector('#rank-math-toc a');
-		if (firstTocLink) {
-			firstTocLink.classList.add('active');
-		}
+	// 	// Underline the first TOC link by default
+	// 	const firstTocLink = document.querySelector('#rank-math-toc a');
+	// 	if (firstTocLink) {
+	// 		firstTocLink.classList.add('active');
+	// 	}
 
-		// Observer to add 'active' class to the current TOC link
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-					const id = entry.target.getAttribute('id');
-					const tocLink = document.querySelector(`#rank-math-toc a[href="#${id}"]`);
-					if (tocLink) {
-						if (entry.isIntersecting) {
-							tocLink.classList.add('active');
-						} else {
-							tocLink.classList.remove('active');
-						}
-					}
-			});
-		}, { threshold: 0.4 }); // Adjust threshold value as needed
+	// 	// Observer to add 'active' class to the current TOC link
+	// 	const observer = new IntersectionObserver((entries) => {
+	// 		entries.forEach(entry => {
+	// 				const id = entry.target.getAttribute('id');
+	// 				const tocLink = document.querySelector(`#rank-math-toc a[href="#${id}"]`);
+	// 				if (tocLink) {
+	// 					if (entry.isIntersecting) {
+	// 						tocLink.classList.add('active');
+	// 					} else {
+	// 						tocLink.classList.remove('active');
+	// 					}
+	// 				}
+	// 		});
+	// 	}, { threshold: 0.4 }); // Adjust threshold value as needed
 
-		// Observe all sections with an 'id' to link them with TOC
-		document.querySelectorAll('section[id]').forEach((section) => {
-			observer.observe(section);
-		});
+	// 	// Observe all sections with an 'id' to link them with TOC
+	// 	document.querySelectorAll('section[id]').forEach((section) => {
+	// 		observer.observe(section);
+	// 	});
 
-		// Function to clear all 'active' classes
-		function clearActiveLinks() {
-			document.querySelectorAll('#rank-math-toc a').forEach(link => {
-					link.classList.remove('active');
-			});
-		}
+	// 	// Function to clear all 'active' classes
+	// 	function clearActiveLinks() {
+	// 		document.querySelectorAll('#rank-math-toc a').forEach(link => {
+	// 				link.classList.remove('active');
+	// 		});
+	// 	}
 
-		// Add 'scroll' event listener
-		window.addEventListener('scroll', () => {
-			let fromTop = window.scrollY;
-			let currentActiveId = '';
+	// 	// Add 'scroll' event listener
+	// 	window.addEventListener('scroll', () => {
+	// 		let fromTop = window.scrollY;
+	// 		let currentActiveId = '';
 
-			document.querySelectorAll('#rank-math-toc a').forEach(link => {
-					let section = document.querySelector(link.hash);
+	// 		document.querySelectorAll('#rank-math-toc a').forEach(link => {
+	// 				let section = document.querySelector(link.hash);
 
-					if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
-						currentActiveId = link.getAttribute('href');
-					}
-			});
+	// 				if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+	// 					currentActiveId = link.getAttribute('href');
+	// 				}
+	// 		});
 
-			// Clear existing 'active' classes and add to the current active TOC link
-			if (currentActiveId) {
-					clearActiveLinks();
-					document.querySelector(`#rank-math-toc a[href="${currentActiveId}"]`).classList.add('active');
-			}
-		});
+	// 		// Clear existing 'active' classes and add to the current active TOC link
+	// 		if (currentActiveId) {
+	// 				clearActiveLinks();
+	// 				document.querySelector(`#rank-math-toc a[href="${currentActiveId}"]`).classList.add('active');
+	// 		}
+	// 	});
 
-		// Get references to the search icon and search form
-		var searchIcon = document.getElementById("searchIcon");
-		var searchForm = document.getElementById("searchForm");
+	// 	// Get references to the search icon and search form
+	// 	var searchIcon = document.getElementById("searchIcon");
+	// 	var searchForm = document.getElementById("searchForm");
 
-		// Event listener to toggle the search form when the search icon is clicked
-		searchIcon.addEventListener("click", function(event) {
-			event.preventDefault(); // Prevent default click behavior
-			searchForm.classList.toggle("active"); // Toggle the 'active' class on the search form
-		});
+	// 	// Event listener to toggle the search form when the search icon is clicked
+	// 	searchIcon.addEventListener("click", function(event) {
+	// 		event.preventDefault(); // Prevent default click behavior
+	// 		searchForm.classList.toggle("active"); // Toggle the 'active' class on the search form
+	// 	});
 
-		// Event listener to hide the search form when clicking anywhere else in the document
-		document.addEventListener("click", function(event) {
-			if (!searchForm.contains(event.target) && !searchIcon.contains(event.target) && searchForm.classList.contains("active")) {
-					searchForm.classList.remove("active"); // Hide the search form
-			}
-		});
+	// 	// Event listener to hide the search form when clicking anywhere else in the document
+	// 	document.addEventListener("click", function(event) {
+	// 		if (!searchForm.contains(event.target) && !searchIcon.contains(event.target) && searchForm.classList.contains("active")) {
+	// 				searchForm.classList.remove("active"); // Hide the search form
+	// 		}
+	// 	});
 
-		// Prevents the document click listener from firing when the searchForm itself is clicked
-		searchForm.addEventListener("click", function(event) {
-			event.stopPropagation();
-		});
+	// 	// Prevents the document click listener from firing when the searchForm itself is clicked
+	// 	searchForm.addEventListener("click", function(event) {
+	// 		event.stopPropagation();
+	// 	});
 
-		const select = document.getElementById('mySelect');
+	// 	const select = document.getElementById('mySelect');
 
-		select.addEventListener('change', function() {
-			this.style.width = this.selectedOptions[0].text.length + 'ch';
-		});
-    });
+	// 	select.addEventListener('change', function() {
+	// 		this.style.width = this.selectedOptions[0].text.length + 'ch';
+	// 	});
+    // });
 </script>
 
 

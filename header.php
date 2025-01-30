@@ -36,7 +36,7 @@
 
 	<?php do_action( 'tailpress_header' ); ?>
 
-	<header class="bg-white	px-4 xl:px-0">
+	<header class="sticky-header bg-white	px-4 xl:px-0 border-b border-[#00000026]">
 
 		<div class="mx-auto max-w-[1280px]">
 			<div class="lg:flex lg:justify-between lg:items-center py-6">

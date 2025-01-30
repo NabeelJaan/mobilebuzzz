@@ -4,7 +4,7 @@ get_header(); // Include the header
 if ( have_posts() ) :
     while ( have_posts() ) : the_post(); ?>
 
-<div class="max-w-[1110px] mx-auto">
+<div class="max-w-[1110px] mx-auto pt-8">
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -13,15 +13,11 @@ if ( have_posts() ) :
         <div>
 
             <?php custom_breadcrumb(); ?>
-
-            <div class="">
                 <?php if ( has_post_thumbnail() ):?>
                     <div class="">
-                        <?php the_post_thumbnail('f-img', ['class' => 'w-[200px]']); ?>
+                        <?php the_post_thumbnail('f-img', ['class' => 'w-full']); ?>
                     </div>
                 <?php endif; ?>
-            </div>
-
         </div>
         <div>
             <div class="mt-[32px] lg:mt-0">
@@ -65,7 +61,7 @@ if ( have_posts() ) :
 </div>
 
 <div>
-    <div class="container max-w-[1110px] mx-auto pt-20 mb-[25px]">
+    <div class="container max-w-[1110px] mx-auto pt-16 mb-[25px]">
     <div class="lg:flex gap-[30px]">
             <div class="lg:w-[67%] max-w-[100%]">
                 <div class="bg-[#f1f2f6] px-[22px] py-[17px] rounded-xl">
